@@ -14,7 +14,21 @@ public class SudokuCell
 
     public SudokuValue sureValue = null;
 
-    public SudokuValue[] possibleValues = new SudokuValue[9];
+    private SudokuValue[] possibleValues = new SudokuValue[9];
+    private int pCounter = 0;
+
+    public void addPosibility(SudokuValue v)
+    {
+        if (v != null) {
+            //check if the value is not before
+            for (int i = 0; i < pCounter; i++) {
+                if (possibleValues[i] == v){
+                    return; //cancel the adding if there value already there
+                }
+            }
+            possibleValues[pCounter++] = v;
+        }
+    }
 
     public int getPosibility()
     {
@@ -23,7 +37,7 @@ public class SudokuCell
             return 0;
         } else {
             int count = 0;
-            for (SudokuValue v: possibleValues) {
+            for (SudokuValue v : possibleValues) {
                 if (v != null) {
                     count++;
                 }
