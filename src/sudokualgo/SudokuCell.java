@@ -22,7 +22,7 @@ public class SudokuCell
         if (v != null) {
             //check if the value is not before
             for (int i = 0; i < pCounter; i++) {
-                if (possibleValues[i] == v){
+                if (possibleValues[i] == v) {
                     return; //cancel the adding if there value already there
                 }
             }
@@ -43,6 +43,36 @@ public class SudokuCell
                 }
             }
             return count;
+        }
+    }
+
+    public String getSureValue()
+    {
+        try {
+            switch (sureValue) {
+            case SV_1:
+                return "1";
+            case SV_2:
+                return "2";
+            case SV_3:
+                return "3";
+            case SV_4:
+                return "4";
+            case SV_5:
+                return "5";
+            case SV_6:
+                return "6";
+            case SV_7:
+                return "7";
+            case SV_8:
+                return "8";
+            case SV_9:
+                return "9";
+            default :
+                return " ";
+            }
+        } catch (Exception e) {
+            return " ";
         }
     }
 }

@@ -13,6 +13,12 @@ public class SudokuBoard
 {
     public SudokuRect[] sudokoRects = new SudokuRect[9];
     
+    public SudokuBoard(){
+        for (int i = 0; i < 9; i++) {
+            sudokoRects[i] = new SudokuRect();
+        }
+    }
+    
     public SudokuCell[] getRow(int rowNumber){
         SudokuCell[] sc = new SudokuCell[9];
         

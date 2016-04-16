@@ -13,4 +13,9 @@ public class SudokuRect
 {
     public SudokuCell[] sudokoCell = new SudokuCell[9];
     
+    public SudokuRect(){
+        for (int i = 0; i < 9; i++) {
+            sudokoCell[i] = new SudokuCell();
+        }
+    }
 }
