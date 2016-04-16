@@ -16,7 +16,6 @@ public class SudokuBoard
     public SudokuCell[] getRow(int rowNumber){
         SudokuCell[] sc = new SudokuCell[9];
         
-
         switch (rowNumber){
         case 0:
             sc[0] = sudokoRects[0].sudokoCell[0];

@@ -19,8 +19,31 @@ public class SudokuAlgo
     {
         new SudokuAlgo();
     }
-    
-    public SudokuAlgo(){
-        System.out.println("Sudoko here!");
+
+    public SudokuAlgo()
+    {
+        CommandReader r = new CommandReader();
+        r.start();
+        int[] bord = new int[49];
+
+        while (true) {
+            if (r.hasCommand) {
+                String command = r.getCommand();
+                if (command.startsWith("fill")) {
+                    String numbers = command.substring(5);
+                    for (int i = 0; i < numbers.length(); i++) {
+                        String nu = numbers.substring(i, i + 1);
+                        int n;
+                        try {
+                            n = Integer.parseInt(nu);
+                        } catch (Exception e) {
+                            n = 0;
+                        }
+                        bord[i] = n;
+                        
+                    }
+                }
+            }
+        }
     }
 }
