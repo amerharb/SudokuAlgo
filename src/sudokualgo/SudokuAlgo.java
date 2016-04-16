@@ -25,7 +25,7 @@ public class SudokuAlgo
         CommandReader r = new CommandReader();
         r.start();
         int[] bord = new int[81];
-        SudokuBoard sb;
+        SudokuBoard sb = null;
 
         while (true) {
             if (r.hasCommand) {
@@ -117,14 +117,17 @@ public class SudokuAlgo
                      }
                      }
                      */
+                } else if (command.startsWith("print")) {
                     //print what has been filled
-                    for (int j = 0; j < 9; j++) {
-                        SudokuCell[] row = sb.getRow(j);
-                        //print row
-                        System.out.println("");
-                        System.out.print(" | ");
-                        for (SudokuCell c : row) {
-                            System.out.print(c.getSureValue() + " | ");
+                    if (sb != null) {
+                        for (int j = 0; j < 9; j++) {
+                            SudokuCell[] row = sb.getRow(j);
+                            //print row
+                            System.out.println("");
+                            System.out.print(" | ");
+                            for (SudokuCell c : row) {
+                                System.out.print(c.getSureValue() + " | ");
+                            }
                         }
                     }
                 } else if (command.startsWith("solve")) {
