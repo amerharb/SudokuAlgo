@@ -11,5 +11,5 @@ package sudokualgo;
  */
 public class SudokuRect
 {
-    
+    public SudokuCell[] sudokoCell = new SudokuCell[9];
 }

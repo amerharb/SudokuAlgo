@@ -12,9 +12,9 @@ package sudokualgo;
 public class SudokuCell
 {
 
-    public SudokuValue sureValue;
+    public SudokuValue sureValue = null;
 
-    public SudokuValue[] possibleValue = {null, null, null, null, null, null, null, null, null};
+    public SudokuValue[] possibleValues = new SudokuValue[9];
 
     public int getPosibility()
     {
@@ -23,13 +23,12 @@ public class SudokuCell
             return 0;
         } else {
             int count = 0;
-            for (int i = 0; i < 9; i++) {
-                if (possibleValue[i] != null) {
+            for (SudokuValue v: possibleValues) {
+                if (v != null) {
                     count++;
                 }
             }
             return count;
         }
     }
-
 }
