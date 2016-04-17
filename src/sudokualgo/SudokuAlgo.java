@@ -18,7 +18,7 @@ public class SudokuAlgo
     public static void main(String[] args) throws InterruptedException
     {
         System.out.println("Good Morning!");
-        new SudokuAlgo();
+        SudokuAlgo sudokuAlgo = new SudokuAlgo();
         System.out.println("Good bye!");
         System.exit(0);
     }
@@ -28,19 +28,20 @@ public class SudokuAlgo
         CommandReader r = new CommandReader();
         r.start();
         int[] bord = new int[81];
-        SudokuBoard sb = null;
+        SudokuBoard sb = new SudokuBoard();
 
         while (true) {
             Thread.yield();
             if (r.hasCommand) {
                 String command = r.getCommand();
+                if (command.isEmpty()) continue;
                 if (command.startsWith("exit")) {
                     break; //exit system
                 } else if (command.startsWith("echo ")) {
                     System.out.println(command.substring(5));
                 } else if (command.startsWith("fill ")) {
                     String numbers = command.substring(5);
-                    for (int i = 0; i < numbers.length(); i++) {
+                    for (int i = 0; i < numbers.length() && i < 81; i++) {
                         String nu = numbers.substring(i, i + 1);
                         int n;
                         try {
@@ -52,7 +53,6 @@ public class SudokuAlgo
                     }
 
                     //fill from array to the object
-                    sb = new SudokuBoard();
                     sb.fillFromArray(bord);
 
                 } else if (command.startsWith("print")) {
