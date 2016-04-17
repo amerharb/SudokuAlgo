@@ -5,6 +5,8 @@
  */
 package sudokualgo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Amer
@@ -23,6 +25,16 @@ public class SudokuAlgo
         System.exit(0);
     }
 
+    public static ArrayList copyArrayList(ArrayList source)
+    {
+        ArrayList target = new ArrayList();
+
+        for (Object E : source) {
+            target.add(E);
+        }
+        return target;
+    }
+
     public SudokuAlgo() throws InterruptedException
     {
         CommandReader r = new CommandReader();
@@ -34,7 +46,9 @@ public class SudokuAlgo
             Thread.yield();
             if (r.hasCommand) {
                 String command = r.getCommand();
-                if (command.isEmpty()) continue;
+                if (command.isEmpty()) {
+                    continue;
+                }
                 if (command.startsWith("exit")) {
                     break; //exit system
                 } else if (command.startsWith("echo ")) {

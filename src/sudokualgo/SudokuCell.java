@@ -5,6 +5,8 @@
  */
 package sudokualgo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Amer
@@ -14,35 +16,37 @@ public class SudokuCell
 
     public SudokuValue sureValue = null;
 
-    private SudokuValue[] possibleValues = new SudokuValue[9];
+    private ArrayList<SudokuValue> possibleValues = new ArrayList<>();
     private int pCounter = 0;
 
     public void addPosibility(SudokuValue v)
     {
         if (v != null) {
             //check if the value is not before
-            for (int i = 0; i < pCounter; i++) {
-                if (possibleValues[i] == v) {
+            for (SudokuValue pv : possibleValues) {
+                if (pv == v){
                     return; //cancel the adding if there value already there
                 }
             }
-            possibleValues[pCounter++] = v;
+            possibleValues.add(v);
         }
     }
 
-    public int getPosibility()
+    public int getPosibilitiesCount()
     {
 
         if (sureValue != null) {
             return 0;
         } else {
+            return possibleValues.size();
+            /*
             int count = 0;
             for (SudokuValue v : possibleValues) {
                 if (v != null) {
                     count++;
                 }
             }
-            return count;
+            return count;*/
         }
     }
 
@@ -74,5 +78,10 @@ public class SudokuCell
         } catch (Exception e) {
             return " ";
         }
+    }
+
+    ArrayList<SudokuValue> getPosibilitiesValue()
+    {
+        return SudokuAlgo.copyArrayList(possibleValues);
     }
 }

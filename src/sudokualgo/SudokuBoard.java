@@ -30,7 +30,7 @@ public class SudokuBoard
         RECT_BLOCK:
         for (SudokuRect r : sudokoRects) {
             ce = 0;
-            for (SudokuCell c : r.sudokoCell) {
+            for (SudokuCell c : r.sudokoCells) {
                 if (c == cell) {
                     break RECT_BLOCK;
                 }
@@ -52,109 +52,108 @@ public class SudokuBoard
 
         switch (rowNumber) {
         case 0:
-            sc[0] = sudokoRects[0].sudokoCell[0];
-            sc[1] = sudokoRects[0].sudokoCell[1];
-            sc[2] = sudokoRects[0].sudokoCell[2];
-            sc[3] = sudokoRects[1].sudokoCell[0];
-            sc[4] = sudokoRects[1].sudokoCell[1];
-            sc[5] = sudokoRects[1].sudokoCell[2];
-            sc[6] = sudokoRects[2].sudokoCell[0];
-            sc[7] = sudokoRects[2].sudokoCell[1];
-            sc[8] = sudokoRects[2].sudokoCell[2];
+            sc[0] = sudokoRects[0].sudokoCells[0];
+            sc[1] = sudokoRects[0].sudokoCells[1];
+            sc[2] = sudokoRects[0].sudokoCells[2];
+            sc[3] = sudokoRects[1].sudokoCells[0];
+            sc[4] = sudokoRects[1].sudokoCells[1];
+            sc[5] = sudokoRects[1].sudokoCells[2];
+            sc[6] = sudokoRects[2].sudokoCells[0];
+            sc[7] = sudokoRects[2].sudokoCells[1];
+            sc[8] = sudokoRects[2].sudokoCells[2];
             break;
         case 1:
-            sc[0] = sudokoRects[0].sudokoCell[3];
-            sc[1] = sudokoRects[0].sudokoCell[4];
-            sc[2] = sudokoRects[0].sudokoCell[5];
-            sc[3] = sudokoRects[1].sudokoCell[3];
-            sc[4] = sudokoRects[1].sudokoCell[4];
-            sc[5] = sudokoRects[1].sudokoCell[5];
-            sc[6] = sudokoRects[2].sudokoCell[3];
-            sc[7] = sudokoRects[2].sudokoCell[4];
-            sc[8] = sudokoRects[2].sudokoCell[5];
+            sc[0] = sudokoRects[0].sudokoCells[3];
+            sc[1] = sudokoRects[0].sudokoCells[4];
+            sc[2] = sudokoRects[0].sudokoCells[5];
+            sc[3] = sudokoRects[1].sudokoCells[3];
+            sc[4] = sudokoRects[1].sudokoCells[4];
+            sc[5] = sudokoRects[1].sudokoCells[5];
+            sc[6] = sudokoRects[2].sudokoCells[3];
+            sc[7] = sudokoRects[2].sudokoCells[4];
+            sc[8] = sudokoRects[2].sudokoCells[5];
             break;
         case 2:
-            sc[0] = sudokoRects[0].sudokoCell[6];
-            sc[1] = sudokoRects[0].sudokoCell[7];
-            sc[2] = sudokoRects[0].sudokoCell[8];
-            sc[3] = sudokoRects[1].sudokoCell[6];
-            sc[4] = sudokoRects[1].sudokoCell[7];
-            sc[5] = sudokoRects[1].sudokoCell[8];
-            sc[6] = sudokoRects[2].sudokoCell[6];
-            sc[7] = sudokoRects[2].sudokoCell[7];
-            sc[8] = sudokoRects[2].sudokoCell[8];
+            sc[0] = sudokoRects[0].sudokoCells[6];
+            sc[1] = sudokoRects[0].sudokoCells[7];
+            sc[2] = sudokoRects[0].sudokoCells[8];
+            sc[3] = sudokoRects[1].sudokoCells[6];
+            sc[4] = sudokoRects[1].sudokoCells[7];
+            sc[5] = sudokoRects[1].sudokoCells[8];
+            sc[6] = sudokoRects[2].sudokoCells[6];
+            sc[7] = sudokoRects[2].sudokoCells[7];
+            sc[8] = sudokoRects[2].sudokoCells[8];
             break;
         case 3:
-            sc[0] = sudokoRects[3].sudokoCell[0];
-            sc[1] = sudokoRects[3].sudokoCell[1];
-            sc[2] = sudokoRects[3].sudokoCell[2];
-            sc[3] = sudokoRects[4].sudokoCell[0];
-            sc[4] = sudokoRects[4].sudokoCell[1];
-            sc[5] = sudokoRects[4].sudokoCell[2];
-            sc[6] = sudokoRects[5].sudokoCell[0];
-            sc[7] = sudokoRects[5].sudokoCell[1];
-            sc[8] = sudokoRects[5].sudokoCell[2];
+            sc[0] = sudokoRects[3].sudokoCells[0];
+            sc[1] = sudokoRects[3].sudokoCells[1];
+            sc[2] = sudokoRects[3].sudokoCells[2];
+            sc[3] = sudokoRects[4].sudokoCells[0];
+            sc[4] = sudokoRects[4].sudokoCells[1];
+            sc[5] = sudokoRects[4].sudokoCells[2];
+            sc[6] = sudokoRects[5].sudokoCells[0];
+            sc[7] = sudokoRects[5].sudokoCells[1];
+            sc[8] = sudokoRects[5].sudokoCells[2];
             break;
         case 4:
-            sc[0] = sudokoRects[3].sudokoCell[3];
-            sc[1] = sudokoRects[3].sudokoCell[4];
-            sc[2] = sudokoRects[3].sudokoCell[5];
-            sc[3] = sudokoRects[4].sudokoCell[3];
-            sc[4] = sudokoRects[4].sudokoCell[4];
-            sc[5] = sudokoRects[4].sudokoCell[5];
-            sc[6] = sudokoRects[5].sudokoCell[3];
-            sc[7] = sudokoRects[5].sudokoCell[4];
-            sc[8] = sudokoRects[5].sudokoCell[5];
+            sc[0] = sudokoRects[3].sudokoCells[3];
+            sc[1] = sudokoRects[3].sudokoCells[4];
+            sc[2] = sudokoRects[3].sudokoCells[5];
+            sc[3] = sudokoRects[4].sudokoCells[3];
+            sc[4] = sudokoRects[4].sudokoCells[4];
+            sc[5] = sudokoRects[4].sudokoCells[5];
+            sc[6] = sudokoRects[5].sudokoCells[3];
+            sc[7] = sudokoRects[5].sudokoCells[4];
+            sc[8] = sudokoRects[5].sudokoCells[5];
             break;
         case 5:
-            sc[0] = sudokoRects[3].sudokoCell[6];
-            sc[1] = sudokoRects[3].sudokoCell[7];
-            sc[2] = sudokoRects[3].sudokoCell[8];
-            sc[3] = sudokoRects[4].sudokoCell[6];
-            sc[4] = sudokoRects[4].sudokoCell[7];
-            sc[5] = sudokoRects[4].sudokoCell[8];
-            sc[6] = sudokoRects[5].sudokoCell[6];
-            sc[7] = sudokoRects[5].sudokoCell[7];
-            sc[8] = sudokoRects[5].sudokoCell[8];
+            sc[0] = sudokoRects[3].sudokoCells[6];
+            sc[1] = sudokoRects[3].sudokoCells[7];
+            sc[2] = sudokoRects[3].sudokoCells[8];
+            sc[3] = sudokoRects[4].sudokoCells[6];
+            sc[4] = sudokoRects[4].sudokoCells[7];
+            sc[5] = sudokoRects[4].sudokoCells[8];
+            sc[6] = sudokoRects[5].sudokoCells[6];
+            sc[7] = sudokoRects[5].sudokoCells[7];
+            sc[8] = sudokoRects[5].sudokoCells[8];
             break;
         case 6:
-            sc[0] = sudokoRects[6].sudokoCell[0];
-            sc[1] = sudokoRects[6].sudokoCell[1];
-            sc[2] = sudokoRects[6].sudokoCell[2];
-            sc[3] = sudokoRects[7].sudokoCell[0];
-            sc[4] = sudokoRects[7].sudokoCell[1];
-            sc[5] = sudokoRects[7].sudokoCell[2];
-            sc[6] = sudokoRects[8].sudokoCell[0];
-            sc[7] = sudokoRects[8].sudokoCell[1];
-            sc[8] = sudokoRects[8].sudokoCell[2];
+            sc[0] = sudokoRects[6].sudokoCells[0];
+            sc[1] = sudokoRects[6].sudokoCells[1];
+            sc[2] = sudokoRects[6].sudokoCells[2];
+            sc[3] = sudokoRects[7].sudokoCells[0];
+            sc[4] = sudokoRects[7].sudokoCells[1];
+            sc[5] = sudokoRects[7].sudokoCells[2];
+            sc[6] = sudokoRects[8].sudokoCells[0];
+            sc[7] = sudokoRects[8].sudokoCells[1];
+            sc[8] = sudokoRects[8].sudokoCells[2];
             break;
         case 7:
-            sc[0] = sudokoRects[6].sudokoCell[3];
-            sc[1] = sudokoRects[6].sudokoCell[4];
-            sc[2] = sudokoRects[6].sudokoCell[5];
-            sc[3] = sudokoRects[7].sudokoCell[3];
-            sc[4] = sudokoRects[7].sudokoCell[4];
-            sc[5] = sudokoRects[7].sudokoCell[5];
-            sc[6] = sudokoRects[8].sudokoCell[3];
-            sc[7] = sudokoRects[8].sudokoCell[4];
-            sc[8] = sudokoRects[8].sudokoCell[5];
+            sc[0] = sudokoRects[6].sudokoCells[3];
+            sc[1] = sudokoRects[6].sudokoCells[4];
+            sc[2] = sudokoRects[6].sudokoCells[5];
+            sc[3] = sudokoRects[7].sudokoCells[3];
+            sc[4] = sudokoRects[7].sudokoCells[4];
+            sc[5] = sudokoRects[7].sudokoCells[5];
+            sc[6] = sudokoRects[8].sudokoCells[3];
+            sc[7] = sudokoRects[8].sudokoCells[4];
+            sc[8] = sudokoRects[8].sudokoCells[5];
             break;
         case 8:
-            sc[0] = sudokoRects[6].sudokoCell[6];
-            sc[1] = sudokoRects[6].sudokoCell[7];
-            sc[2] = sudokoRects[6].sudokoCell[8];
-            sc[3] = sudokoRects[7].sudokoCell[6];
-            sc[4] = sudokoRects[7].sudokoCell[7];
-            sc[5] = sudokoRects[7].sudokoCell[8];
-            sc[6] = sudokoRects[8].sudokoCell[6];
-            sc[7] = sudokoRects[8].sudokoCell[7];
-            sc[8] = sudokoRects[8].sudokoCell[8];
+            sc[0] = sudokoRects[6].sudokoCells[6];
+            sc[1] = sudokoRects[6].sudokoCells[7];
+            sc[2] = sudokoRects[6].sudokoCells[8];
+            sc[3] = sudokoRects[7].sudokoCells[6];
+            sc[4] = sudokoRects[7].sudokoCells[7];
+            sc[5] = sudokoRects[7].sudokoCells[8];
+            sc[6] = sudokoRects[8].sudokoCells[6];
+            sc[7] = sudokoRects[8].sudokoCells[7];
+            sc[8] = sudokoRects[8].sudokoCells[8];
             break;
         }
 
         return sc;
     }
-
 
     public SudokuCell[] getCol(SudokuCell cell)
     {
@@ -163,7 +162,7 @@ public class SudokuBoard
         RECT_BLOCK:
         for (SudokuRect r : sudokoRects) {
             ce = 0;
-            for (SudokuCell c : r.sudokoCell) {
+            for (SudokuCell c : r.sudokoCells) {
                 if (c == cell) {
                     break RECT_BLOCK;
                 }
@@ -185,103 +184,103 @@ public class SudokuBoard
 
         switch (colNumber) {
         case 0:
-            sc[0] = sudokoRects[0].sudokoCell[0];
-            sc[1] = sudokoRects[0].sudokoCell[3];
-            sc[2] = sudokoRects[0].sudokoCell[6];
-            sc[3] = sudokoRects[3].sudokoCell[0];
-            sc[4] = sudokoRects[3].sudokoCell[3];
-            sc[5] = sudokoRects[3].sudokoCell[6];
-            sc[6] = sudokoRects[6].sudokoCell[0];
-            sc[7] = sudokoRects[6].sudokoCell[3];
-            sc[8] = sudokoRects[6].sudokoCell[6];
+            sc[0] = sudokoRects[0].sudokoCells[0];
+            sc[1] = sudokoRects[0].sudokoCells[3];
+            sc[2] = sudokoRects[0].sudokoCells[6];
+            sc[3] = sudokoRects[3].sudokoCells[0];
+            sc[4] = sudokoRects[3].sudokoCells[3];
+            sc[5] = sudokoRects[3].sudokoCells[6];
+            sc[6] = sudokoRects[6].sudokoCells[0];
+            sc[7] = sudokoRects[6].sudokoCells[3];
+            sc[8] = sudokoRects[6].sudokoCells[6];
             break;
         case 1:
-            sc[0] = sudokoRects[0].sudokoCell[1];
-            sc[1] = sudokoRects[0].sudokoCell[4];
-            sc[2] = sudokoRects[0].sudokoCell[7];
-            sc[3] = sudokoRects[3].sudokoCell[1];
-            sc[4] = sudokoRects[3].sudokoCell[4];
-            sc[5] = sudokoRects[3].sudokoCell[7];
-            sc[6] = sudokoRects[6].sudokoCell[1];
-            sc[7] = sudokoRects[6].sudokoCell[4];
-            sc[8] = sudokoRects[6].sudokoCell[7];
+            sc[0] = sudokoRects[0].sudokoCells[1];
+            sc[1] = sudokoRects[0].sudokoCells[4];
+            sc[2] = sudokoRects[0].sudokoCells[7];
+            sc[3] = sudokoRects[3].sudokoCells[1];
+            sc[4] = sudokoRects[3].sudokoCells[4];
+            sc[5] = sudokoRects[3].sudokoCells[7];
+            sc[6] = sudokoRects[6].sudokoCells[1];
+            sc[7] = sudokoRects[6].sudokoCells[4];
+            sc[8] = sudokoRects[6].sudokoCells[7];
             break;
         case 2:
-            sc[0] = sudokoRects[0].sudokoCell[2];
-            sc[1] = sudokoRects[0].sudokoCell[5];
-            sc[2] = sudokoRects[0].sudokoCell[8];
-            sc[3] = sudokoRects[3].sudokoCell[2];
-            sc[4] = sudokoRects[3].sudokoCell[5];
-            sc[5] = sudokoRects[3].sudokoCell[8];
-            sc[6] = sudokoRects[6].sudokoCell[2];
-            sc[7] = sudokoRects[6].sudokoCell[5];
-            sc[8] = sudokoRects[6].sudokoCell[8];
+            sc[0] = sudokoRects[0].sudokoCells[2];
+            sc[1] = sudokoRects[0].sudokoCells[5];
+            sc[2] = sudokoRects[0].sudokoCells[8];
+            sc[3] = sudokoRects[3].sudokoCells[2];
+            sc[4] = sudokoRects[3].sudokoCells[5];
+            sc[5] = sudokoRects[3].sudokoCells[8];
+            sc[6] = sudokoRects[6].sudokoCells[2];
+            sc[7] = sudokoRects[6].sudokoCells[5];
+            sc[8] = sudokoRects[6].sudokoCells[8];
             break;
         case 3:
-            sc[0] = sudokoRects[1].sudokoCell[0];
-            sc[1] = sudokoRects[1].sudokoCell[3];
-            sc[2] = sudokoRects[1].sudokoCell[6];
-            sc[3] = sudokoRects[4].sudokoCell[0];
-            sc[4] = sudokoRects[4].sudokoCell[3];
-            sc[5] = sudokoRects[4].sudokoCell[6];
-            sc[6] = sudokoRects[7].sudokoCell[0];
-            sc[7] = sudokoRects[7].sudokoCell[3];
-            sc[8] = sudokoRects[7].sudokoCell[6];
+            sc[0] = sudokoRects[1].sudokoCells[0];
+            sc[1] = sudokoRects[1].sudokoCells[3];
+            sc[2] = sudokoRects[1].sudokoCells[6];
+            sc[3] = sudokoRects[4].sudokoCells[0];
+            sc[4] = sudokoRects[4].sudokoCells[3];
+            sc[5] = sudokoRects[4].sudokoCells[6];
+            sc[6] = sudokoRects[7].sudokoCells[0];
+            sc[7] = sudokoRects[7].sudokoCells[3];
+            sc[8] = sudokoRects[7].sudokoCells[6];
             break;
         case 4:
-            sc[0] = sudokoRects[1].sudokoCell[1];
-            sc[1] = sudokoRects[1].sudokoCell[4];
-            sc[2] = sudokoRects[1].sudokoCell[7];
-            sc[3] = sudokoRects[4].sudokoCell[1];
-            sc[4] = sudokoRects[4].sudokoCell[4];
-            sc[5] = sudokoRects[4].sudokoCell[7];
-            sc[6] = sudokoRects[7].sudokoCell[1];
-            sc[7] = sudokoRects[7].sudokoCell[4];
-            sc[8] = sudokoRects[7].sudokoCell[7];
+            sc[0] = sudokoRects[1].sudokoCells[1];
+            sc[1] = sudokoRects[1].sudokoCells[4];
+            sc[2] = sudokoRects[1].sudokoCells[7];
+            sc[3] = sudokoRects[4].sudokoCells[1];
+            sc[4] = sudokoRects[4].sudokoCells[4];
+            sc[5] = sudokoRects[4].sudokoCells[7];
+            sc[6] = sudokoRects[7].sudokoCells[1];
+            sc[7] = sudokoRects[7].sudokoCells[4];
+            sc[8] = sudokoRects[7].sudokoCells[7];
             break;
         case 5:
-            sc[0] = sudokoRects[1].sudokoCell[2];
-            sc[1] = sudokoRects[1].sudokoCell[5];
-            sc[2] = sudokoRects[1].sudokoCell[8];
-            sc[3] = sudokoRects[4].sudokoCell[2];
-            sc[4] = sudokoRects[4].sudokoCell[5];
-            sc[5] = sudokoRects[4].sudokoCell[8];
-            sc[6] = sudokoRects[7].sudokoCell[2];
-            sc[7] = sudokoRects[7].sudokoCell[5];
-            sc[8] = sudokoRects[7].sudokoCell[8];
+            sc[0] = sudokoRects[1].sudokoCells[2];
+            sc[1] = sudokoRects[1].sudokoCells[5];
+            sc[2] = sudokoRects[1].sudokoCells[8];
+            sc[3] = sudokoRects[4].sudokoCells[2];
+            sc[4] = sudokoRects[4].sudokoCells[5];
+            sc[5] = sudokoRects[4].sudokoCells[8];
+            sc[6] = sudokoRects[7].sudokoCells[2];
+            sc[7] = sudokoRects[7].sudokoCells[5];
+            sc[8] = sudokoRects[7].sudokoCells[8];
             break;
         case 6:
-            sc[0] = sudokoRects[2].sudokoCell[0];
-            sc[1] = sudokoRects[2].sudokoCell[3];
-            sc[2] = sudokoRects[2].sudokoCell[6];
-            sc[3] = sudokoRects[5].sudokoCell[0];
-            sc[4] = sudokoRects[5].sudokoCell[3];
-            sc[5] = sudokoRects[5].sudokoCell[6];
-            sc[6] = sudokoRects[8].sudokoCell[0];
-            sc[7] = sudokoRects[8].sudokoCell[3];
-            sc[8] = sudokoRects[8].sudokoCell[6];
+            sc[0] = sudokoRects[2].sudokoCells[0];
+            sc[1] = sudokoRects[2].sudokoCells[3];
+            sc[2] = sudokoRects[2].sudokoCells[6];
+            sc[3] = sudokoRects[5].sudokoCells[0];
+            sc[4] = sudokoRects[5].sudokoCells[3];
+            sc[5] = sudokoRects[5].sudokoCells[6];
+            sc[6] = sudokoRects[8].sudokoCells[0];
+            sc[7] = sudokoRects[8].sudokoCells[3];
+            sc[8] = sudokoRects[8].sudokoCells[6];
             break;
         case 7:
-            sc[0] = sudokoRects[2].sudokoCell[1];
-            sc[1] = sudokoRects[2].sudokoCell[4];
-            sc[2] = sudokoRects[2].sudokoCell[7];
-            sc[3] = sudokoRects[5].sudokoCell[1];
-            sc[4] = sudokoRects[5].sudokoCell[4];
-            sc[5] = sudokoRects[5].sudokoCell[7];
-            sc[6] = sudokoRects[8].sudokoCell[1];
-            sc[7] = sudokoRects[8].sudokoCell[4];
-            sc[8] = sudokoRects[8].sudokoCell[7];
+            sc[0] = sudokoRects[2].sudokoCells[1];
+            sc[1] = sudokoRects[2].sudokoCells[4];
+            sc[2] = sudokoRects[2].sudokoCells[7];
+            sc[3] = sudokoRects[5].sudokoCells[1];
+            sc[4] = sudokoRects[5].sudokoCells[4];
+            sc[5] = sudokoRects[5].sudokoCells[7];
+            sc[6] = sudokoRects[8].sudokoCells[1];
+            sc[7] = sudokoRects[8].sudokoCells[4];
+            sc[8] = sudokoRects[8].sudokoCells[7];
             break;
         case 8:
-            sc[0] = sudokoRects[2].sudokoCell[2];
-            sc[1] = sudokoRects[2].sudokoCell[5];
-            sc[2] = sudokoRects[2].sudokoCell[8];
-            sc[3] = sudokoRects[5].sudokoCell[2];
-            sc[4] = sudokoRects[5].sudokoCell[5];
-            sc[5] = sudokoRects[5].sudokoCell[8];
-            sc[6] = sudokoRects[8].sudokoCell[2];
-            sc[7] = sudokoRects[8].sudokoCell[5];
-            sc[8] = sudokoRects[8].sudokoCell[8];
+            sc[0] = sudokoRects[2].sudokoCells[2];
+            sc[1] = sudokoRects[2].sudokoCells[5];
+            sc[2] = sudokoRects[2].sudokoCells[8];
+            sc[3] = sudokoRects[5].sudokoCells[2];
+            sc[4] = sudokoRects[5].sudokoCells[5];
+            sc[5] = sudokoRects[5].sudokoCells[8];
+            sc[6] = sudokoRects[8].sudokoCells[2];
+            sc[7] = sudokoRects[8].sudokoCells[5];
+            sc[8] = sudokoRects[8].sudokoCells[8];
             break;
         }
 
@@ -293,57 +292,57 @@ public class SudokuBoard
         int i = 0;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
         for (int x = 0; x < 3; x++) {
             for (int y = 3; y < 6; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
         for (int x = 0; x < 3; x++) {
             for (int y = 6; y < 9; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
 
         for (int x = 3; x < 6; x++) {
             for (int y = 0; y < 3; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
         for (int x = 3; x < 6; x++) {
             for (int y = 3; y < 6; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
         for (int x = 3; x < 6; x++) {
             for (int y = 6; y < 9; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
 
         for (int x = 6; x < 9; x++) {
             for (int y = 0; y < 3; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
         for (int x = 6; x < 9; x++) {
             for (int y = 3; y < 6; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
         for (int x = 6; x < 9; x++) {
             for (int y = 6; y < 9; y++) {
-                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                sudokoRects[x].sudokoCells[y].sureValue = getSV(bord[i]);
                 i++;
             }
         }
@@ -376,15 +375,15 @@ public class SudokuBoard
     }
 
     public void findPosibilities()
-    {        
-        
+    {
+
         findOnePosibilityCell();
-    
+        findUniquePosibilityCell();
     }
 
     private void findOnePosibilityCell()
     {
-        
+
         ArrayList allValues = new ArrayList<SudokuValue>();
         allValues.add(SudokuValue.SV_1);
         allValues.add(SudokuValue.SV_2);
@@ -398,11 +397,11 @@ public class SudokuBoard
 
         RECT_LOOP:
         for (SudokuRect rect : sudokoRects) {
-            for (SudokuCell cell : rect.sudokoCell) {
+            for (SudokuCell cell : rect.sudokoCells) {
                 if (cell.sureValue == null) {
-                    ArrayList<SudokuValue> temp = copyArrayList(allValues);
+                    ArrayList<SudokuValue> temp = SudokuAlgo.copyArrayList(allValues);
                     //check other cell in same rect of this cell and remove then sure value
-                    for (SudokuCell c : rect.sudokoCell) {
+                    for (SudokuCell c : rect.sudokoCells) {
                         if (c.sureValue != null) {
                             temp.remove(c.sureValue);
                         }
@@ -421,16 +420,16 @@ public class SudokuBoard
                             temp.remove(c.sureValue);
                         }
                     }
-                    
-                    if (temp.size() < 1){
+
+                    if (temp.size() < 1) {
                         System.out.println("ERROR: this is a non-solveable sudoku");
-                    } else if (temp.size() == 1 ){
+                    } else if (temp.size() == 1) {
                         cell.sureValue = temp.get(0);
                         System.out.println("Sure value found!");
                         //run the findPosibility again
                         findOnePosibilityCell();
                         break RECT_LOOP;
-                    } else{
+                    } else {
                         for (SudokuValue v : temp) {
                             cell.addPosibility(v);
                         }
@@ -440,14 +439,66 @@ public class SudokuBoard
         }
     }
 
-    private ArrayList copyArrayList(ArrayList source)
+    private void findUniquePosibilityCell()
     {
-        ArrayList target = new ArrayList();
 
-        for (Object E : source) {
-            target.add(E);
+        RECT_LOOP:
+        for (SudokuRect rect : sudokoRects) {
+            for (SudokuCell cell : rect.sudokoCells) {
+                if (cell.sureValue == null) {
+                    ArrayList<SudokuValue> temp;
+
+                    //check other cell in same rect of this cell 
+                    temp = cell.getPosibilitiesValue();
+                    for (SudokuCell c : rect.sudokoCells) {
+                        if (c.sureValue == null && c != cell) {
+                            for (SudokuValue v : c.getPosibilitiesValue()) {
+                                temp.remove(v);
+                            }
+                        }
+                    }
+                    if (temp.size() == 1) { //unique posibility in rect
+                        cell.sureValue = temp.get(0);
+                        findOnePosibilityCell();
+                        findUniquePosibilityCell();
+                        break RECT_LOOP;
+                    }
+                    
+                    //check other cell in the same row 
+                    temp = cell.getPosibilitiesValue();
+                    for (SudokuCell c : this.getRow(cell)) {
+                        if (c.sureValue == null && c != cell) {
+                            for (SudokuValue v : c.getPosibilitiesValue()) {
+                                temp.remove(v);
+                            }
+                        }
+                    }
+                    if (temp.size() == 1) { //unique posibility in rect
+                        cell.sureValue = temp.get(0);
+                        findOnePosibilityCell();
+                        findUniquePosibilityCell();
+                        break RECT_LOOP;
+                    }
+
+                    //check other cell in the same col and remove then sure value
+                    temp = cell.getPosibilitiesValue();
+                    for (SudokuCell c : this.getCol(cell)) {
+                        if (c.sureValue != null) {
+                            for (SudokuValue v : c.getPosibilitiesValue()) {
+                                temp.remove(v);
+                            }
+                        }
+                    }
+                    if (temp.size() == 1) { //unique posibility in rect
+                        cell.sureValue = temp.get(0);
+                        findOnePosibilityCell();
+                        findUniquePosibilityCell();
+                        break RECT_LOOP;
+                    }
+
+                }
+            }
         }
-        return target;
     }
 
     private int getRowNumber(int re, int ce)
@@ -457,7 +508,7 @@ public class SudokuBoard
         } else if (re < 3) { // the row then is 0,1,2
             if (ce < 3) {
                 return 0;
-            } else if (ce < 6) { 
+            } else if (ce < 6) {
                 return 1;
             } else {
                 return 2;
@@ -488,7 +539,7 @@ public class SudokuBoard
         } else if (re % 3 == 0) { // the col then is 0,1,2
             if (ce % 3 == 0) {
                 return 0;
-            } else if (ce % 3 == 1) { 
+            } else if (ce % 3 == 1) {
                 return 1;
             } else {
                 return 2;
@@ -496,7 +547,7 @@ public class SudokuBoard
         } else if (re % 3 == 1) { // the col then is 3,4,5
             if (ce % 3 == 0) {
                 return 3;
-            } else if (ce % 3 == 1) { 
+            } else if (ce % 3 == 1) {
                 return 4;
             } else {
                 return 5;
@@ -504,7 +555,7 @@ public class SudokuBoard
         } else { // the col then is 6,7,8
             if (ce % 3 == 0) {
                 return 6;
-            } else if (ce % 3 == 1) { 
+            } else if (ce % 3 == 1) {
                 return 7;
             } else {
                 return 8;

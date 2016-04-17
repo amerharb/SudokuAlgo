@@ -11,11 +11,11 @@ package sudokualgo;
  */
 public class SudokuRect
 {
-    public SudokuCell[] sudokoCell = new SudokuCell[9];
+    public SudokuCell[] sudokoCells = new SudokuCell[9];
     
     public SudokuRect(){
         for (int i = 0; i < 9; i++) {
-            sudokoCell[i] = new SudokuCell();
+            sudokoCells[i] = new SudokuCell();
         }
     }
 }
