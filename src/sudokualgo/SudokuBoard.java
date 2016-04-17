@@ -428,7 +428,7 @@ public class SudokuBoard
                         cell.sureValue = temp.get(0);
                         System.out.println("Sure value found!");
                         //run the findPosibility again
-                        findPosibilities();
+                        findOnePosibilityCell();
                         break RECT_LOOP;
                     } else{
                         for (SudokuValue v : temp) {
