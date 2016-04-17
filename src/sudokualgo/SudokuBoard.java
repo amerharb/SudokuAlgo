@@ -11,18 +11,21 @@ package sudokualgo;
  */
 public class SudokuBoard
 {
+
     public SudokuRect[] sudokoRects = new SudokuRect[9];
-    
-    public SudokuBoard(){
+
+    public SudokuBoard()
+    {
         for (int i = 0; i < 9; i++) {
             sudokoRects[i] = new SudokuRect();
         }
     }
-    
-    public SudokuCell[] getRow(int rowNumber){
+
+    public SudokuCell[] getRow(int rowNumber)
+    {
         SudokuCell[] sc = new SudokuCell[9];
-        
-        switch (rowNumber){
+
+        switch (rowNumber) {
         case 0:
             sc[0] = sudokoRects[0].sudokoCell[0];
             sc[1] = sudokoRects[0].sudokoCell[1];
@@ -123,7 +126,95 @@ public class SudokuBoard
             sc[8] = sudokoRects[8].sudokoCell[8];
             break;
         }
-        
+
         return sc;
     }
+
+    void fillFromArray(int[] bord)
+    {
+        int i = 0;
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+        for (int x = 0; x < 3; x++) {
+            for (int y = 3; y < 6; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+        for (int x = 0; x < 3; x++) {
+            for (int y = 6; y < 9; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+
+        for (int x = 3; x < 6; x++) {
+            for (int y = 0; y < 3; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+        for (int x = 3; x < 6; x++) {
+            for (int y = 3; y < 6; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+        for (int x = 3; x < 6; x++) {
+            for (int y = 6; y < 9; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+
+        for (int x = 6; x < 9; x++) {
+            for (int y = 0; y < 3; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+        for (int x = 6; x < 9; x++) {
+            for (int y = 3; y < 6; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+        for (int x = 6; x < 9; x++) {
+            for (int y = 6; y < 9; y++) {
+                sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
+                i++;
+            }
+        }
+    }
+
+    private SudokuValue getSV(int v)
+    {
+        switch (v) {
+        case 1:
+            return SudokuValue.SV_1;
+        case 2:
+            return SudokuValue.SV_2;
+        case 3:
+            return SudokuValue.SV_3;
+        case 4:
+            return SudokuValue.SV_4;
+        case 5:
+            return SudokuValue.SV_5;
+        case 6:
+            return SudokuValue.SV_6;
+        case 7:
+            return SudokuValue.SV_7;
+        case 8:
+            return SudokuValue.SV_8;
+        case 9:
+            return SudokuValue.SV_9;
+        default:
+            return null;
+        }
+    }
+
 }
