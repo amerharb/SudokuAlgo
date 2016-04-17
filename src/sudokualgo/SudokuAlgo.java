@@ -15,14 +15,15 @@ public class SudokuAlgo
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
+        System.out.println("Good Morning!");
         new SudokuAlgo();
         System.out.println("Good bye!");
         System.exit(0);
     }
 
-    public SudokuAlgo()
+    public SudokuAlgo() throws InterruptedException
     {
         CommandReader r = new CommandReader();
         r.start();
@@ -30,11 +31,14 @@ public class SudokuAlgo
         SudokuBoard sb = null;
 
         while (true) {
+            Thread.yield();
             if (r.hasCommand) {
                 String command = r.getCommand();
                 if (command.startsWith("exit")) {
                     break; //exit system
-                } else if (command.startsWith("fill")) {
+                } else if (command.startsWith("echo ")) {
+                    System.out.println(command.substring(5));
+                } else if (command.startsWith("fill ")) {
                     String numbers = command.substring(5);
                     for (int i = 0; i < numbers.length(); i++) {
                         String nu = numbers.substring(i, i + 1);

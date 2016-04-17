@@ -155,6 +155,139 @@ public class SudokuBoard
         return sc;
     }
 
+
+    public SudokuCell[] getCol(SudokuCell cell)
+    {
+        //look for the cell in which row it is
+        int re = 0, ce = 0;
+        RECT_BLOCK:
+        for (SudokuRect r : sudokoRects) {
+            ce = 0;
+            for (SudokuCell c : r.sudokoCell) {
+                if (c == cell) {
+                    break RECT_BLOCK;
+                }
+                ce++;
+            }
+            re++;
+        }
+        if (re > 8 || ce > 8) {//not found
+            return null;
+        } else {
+
+            return getCol(getColNumber(re, ce));
+        }
+    }
+
+    public SudokuCell[] getCol(int colNumber)
+    {
+        SudokuCell[] sc = new SudokuCell[9];
+
+        switch (colNumber) {
+        case 0:
+            sc[0] = sudokoRects[0].sudokoCell[0];
+            sc[1] = sudokoRects[0].sudokoCell[3];
+            sc[2] = sudokoRects[0].sudokoCell[6];
+            sc[3] = sudokoRects[3].sudokoCell[0];
+            sc[4] = sudokoRects[3].sudokoCell[3];
+            sc[5] = sudokoRects[3].sudokoCell[6];
+            sc[6] = sudokoRects[6].sudokoCell[0];
+            sc[7] = sudokoRects[6].sudokoCell[3];
+            sc[8] = sudokoRects[6].sudokoCell[6];
+            break;
+        case 1:
+            sc[0] = sudokoRects[0].sudokoCell[1];
+            sc[1] = sudokoRects[0].sudokoCell[4];
+            sc[2] = sudokoRects[0].sudokoCell[7];
+            sc[3] = sudokoRects[3].sudokoCell[1];
+            sc[4] = sudokoRects[3].sudokoCell[4];
+            sc[5] = sudokoRects[3].sudokoCell[7];
+            sc[6] = sudokoRects[6].sudokoCell[1];
+            sc[7] = sudokoRects[6].sudokoCell[4];
+            sc[8] = sudokoRects[6].sudokoCell[7];
+            break;
+        case 2:
+            sc[0] = sudokoRects[0].sudokoCell[2];
+            sc[1] = sudokoRects[0].sudokoCell[5];
+            sc[2] = sudokoRects[0].sudokoCell[8];
+            sc[3] = sudokoRects[3].sudokoCell[2];
+            sc[4] = sudokoRects[3].sudokoCell[5];
+            sc[5] = sudokoRects[3].sudokoCell[8];
+            sc[6] = sudokoRects[6].sudokoCell[2];
+            sc[7] = sudokoRects[6].sudokoCell[5];
+            sc[8] = sudokoRects[6].sudokoCell[8];
+            break;
+        case 3:
+            sc[0] = sudokoRects[1].sudokoCell[0];
+            sc[1] = sudokoRects[1].sudokoCell[3];
+            sc[2] = sudokoRects[1].sudokoCell[6];
+            sc[3] = sudokoRects[4].sudokoCell[0];
+            sc[4] = sudokoRects[4].sudokoCell[3];
+            sc[5] = sudokoRects[4].sudokoCell[6];
+            sc[6] = sudokoRects[7].sudokoCell[0];
+            sc[7] = sudokoRects[7].sudokoCell[3];
+            sc[8] = sudokoRects[7].sudokoCell[6];
+            break;
+        case 4:
+            sc[0] = sudokoRects[1].sudokoCell[1];
+            sc[1] = sudokoRects[1].sudokoCell[4];
+            sc[2] = sudokoRects[1].sudokoCell[7];
+            sc[3] = sudokoRects[4].sudokoCell[1];
+            sc[4] = sudokoRects[4].sudokoCell[4];
+            sc[5] = sudokoRects[4].sudokoCell[7];
+            sc[6] = sudokoRects[7].sudokoCell[1];
+            sc[7] = sudokoRects[7].sudokoCell[4];
+            sc[8] = sudokoRects[7].sudokoCell[7];
+            break;
+        case 5:
+            sc[0] = sudokoRects[1].sudokoCell[2];
+            sc[1] = sudokoRects[1].sudokoCell[5];
+            sc[2] = sudokoRects[1].sudokoCell[8];
+            sc[3] = sudokoRects[4].sudokoCell[2];
+            sc[4] = sudokoRects[4].sudokoCell[5];
+            sc[5] = sudokoRects[4].sudokoCell[8];
+            sc[6] = sudokoRects[7].sudokoCell[2];
+            sc[7] = sudokoRects[7].sudokoCell[5];
+            sc[8] = sudokoRects[7].sudokoCell[8];
+            break;
+        case 6:
+            sc[0] = sudokoRects[2].sudokoCell[0];
+            sc[1] = sudokoRects[2].sudokoCell[3];
+            sc[2] = sudokoRects[2].sudokoCell[6];
+            sc[3] = sudokoRects[5].sudokoCell[0];
+            sc[4] = sudokoRects[5].sudokoCell[3];
+            sc[5] = sudokoRects[5].sudokoCell[6];
+            sc[6] = sudokoRects[8].sudokoCell[0];
+            sc[7] = sudokoRects[8].sudokoCell[3];
+            sc[8] = sudokoRects[8].sudokoCell[6];
+            break;
+        case 7:
+            sc[0] = sudokoRects[2].sudokoCell[1];
+            sc[1] = sudokoRects[2].sudokoCell[4];
+            sc[2] = sudokoRects[2].sudokoCell[7];
+            sc[3] = sudokoRects[5].sudokoCell[1];
+            sc[4] = sudokoRects[5].sudokoCell[4];
+            sc[5] = sudokoRects[5].sudokoCell[7];
+            sc[6] = sudokoRects[8].sudokoCell[1];
+            sc[7] = sudokoRects[8].sudokoCell[4];
+            sc[8] = sudokoRects[8].sudokoCell[7];
+            break;
+        case 8:
+            sc[0] = sudokoRects[2].sudokoCell[2];
+            sc[1] = sudokoRects[2].sudokoCell[5];
+            sc[2] = sudokoRects[2].sudokoCell[8];
+            sc[3] = sudokoRects[5].sudokoCell[2];
+            sc[4] = sudokoRects[5].sudokoCell[5];
+            sc[5] = sudokoRects[5].sudokoCell[8];
+            sc[6] = sudokoRects[8].sudokoCell[2];
+            sc[7] = sudokoRects[8].sudokoCell[5];
+            sc[8] = sudokoRects[8].sudokoCell[8];
+            break;
+        }
+
+        return sc;
+    }
+
     void fillFromArray(int[] bord)
     {
         int i = 0;
@@ -257,19 +390,40 @@ public class SudokuBoard
 
         for (SudokuRect rect : sudokoRects) {
             for (SudokuCell cell : rect.sudokoCell) {
-                ArrayList temp = copyArrayList(allValues);
                 if (cell.sureValue == null) {
-                    //check other cell in same rect of this cell
+                    ArrayList<SudokuValue> temp = copyArrayList(allValues);
+                    //check other cell in same rect of this cell and remove then sure value
                     for (SudokuCell c : rect.sudokoCell) {
                         if (c.sureValue != null) {
                             temp.remove(c.sureValue);
                         }
                     }
 
-                    //check other cell in the same row
+                    //check other cell in the same row and remove then sure value
                     for (SudokuCell c : this.getRow(cell)) {
-
+                        if (c.sureValue != null) {
+                            temp.remove(c.sureValue);
+                        }
                     }
+
+                    //check other cell in the same col and remove then sure value
+                    for (SudokuCell c : this.getCol(cell)) {
+                        if (c.sureValue != null) {
+                            temp.remove(c.sureValue);
+                        }
+                    }
+                    
+                    if (temp.size() < 1){
+                        System.out.println("ERROR: this is a non-solveable sudoku");
+                    } else if (temp.size() == 1 ){
+                        cell.sureValue = temp.get(0);
+                        System.out.println("Sure value found!");
+                    } else{
+                        for (SudokuValue v : temp) {
+                            cell.addPosibility(v);
+                        }
+                    }
+                    
 
                 }
             }
@@ -348,5 +502,6 @@ public class SudokuBoard
 
         }
     }
+
 
 }
