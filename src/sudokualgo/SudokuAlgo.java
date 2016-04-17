@@ -45,26 +45,12 @@ public class SudokuAlgo
                             n = 0;
                         }
                         bord[i] = n;
-
                     }
 
                     //fill from array to the object
                     sb = new SudokuBoard();
                     sb.fillFromArray(bord);
 
-                    //wrong code
-                    /*
-                     for (int x = 0; x < 9; x++) {
-                     for (int y = 0; y < 9; y++) {
-                     if (bord[i] == 0) {
-                     sb.sudokoRects[x].sudokoCell[y].sureValue = null;
-                     } else {
-                     sb.sudokoRects[x].sudokoCell[y].sureValue = getSV(bord[i]);
-                     }
-                     i++;
-                     }
-                     }
-                     */
                 } else if (command.startsWith("print")) {
                     //print what has been filled
                     if (sb != null) {
@@ -79,7 +65,7 @@ public class SudokuAlgo
                         }
                     }
                 } else if (command.startsWith("solve")) {
-
+                    sb.findPosibilities();
                 }
             }
         }

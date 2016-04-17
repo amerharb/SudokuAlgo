@@ -5,6 +5,8 @@
  */
 package sudokualgo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Amer
@@ -18,6 +20,29 @@ public class SudokuBoard
     {
         for (int i = 0; i < 9; i++) {
             sudokoRects[i] = new SudokuRect();
+        }
+    }
+
+    public SudokuCell[] getRow(SudokuCell cell)
+    {
+        //look for the cell in which row it is
+        int re = 0, ce = 0;
+        RECT_BLOCK:
+        for (SudokuRect r : sudokoRects) {
+            ce = 0;
+            for (SudokuCell c : r.sudokoCell) {
+                if (c == cell) {
+                    break RECT_BLOCK;
+                }
+                ce++;
+            }
+            re++;
+        }
+        if (re > 8 || ce > 8) {//not found
+            return null;
+        } else {
+
+            return getRow(getRowNumber(re, ce));
         }
     }
 
@@ -214,6 +239,113 @@ public class SudokuBoard
             return SudokuValue.SV_9;
         default:
             return null;
+        }
+    }
+
+    public void findPosibilities()
+    {
+        ArrayList allValues = new ArrayList<SudokuValue>();
+        allValues.add(SudokuValue.SV_1);
+        allValues.add(SudokuValue.SV_2);
+        allValues.add(SudokuValue.SV_3);
+        allValues.add(SudokuValue.SV_4);
+        allValues.add(SudokuValue.SV_5);
+        allValues.add(SudokuValue.SV_6);
+        allValues.add(SudokuValue.SV_7);
+        allValues.add(SudokuValue.SV_8);
+        allValues.add(SudokuValue.SV_9);
+
+        for (SudokuRect rect : sudokoRects) {
+            for (SudokuCell cell : rect.sudokoCell) {
+                ArrayList temp = copyArrayList(allValues);
+                if (cell.sureValue == null) {
+                    //check other cell in same rect of this cell
+                    for (SudokuCell c : rect.sudokoCell) {
+                        if (c.sureValue != null) {
+                            temp.remove(c.sureValue);
+                        }
+                    }
+
+                    //check other cell in the same row
+                    for (SudokuCell c : this.getRow(cell)) {
+
+                    }
+
+                }
+            }
+        }
+    }
+
+    private ArrayList copyArrayList(ArrayList source)
+    {
+        ArrayList target = new ArrayList();
+
+        for (Object E : source) {
+            target.add(E);
+        }
+        return target;
+    }
+
+    private int getRowNumber(int re, int ce)
+    {
+        if (re < 0 | re > 8 | ce < 0 | ce > 8) { // invalid input
+            return -1;
+        } else if (re < 3) { // the row then is 0,1,2
+            if (ce < 3) {
+                return 0;
+            } else if (ce < 6) { 
+                return 1;
+            } else {
+                return 2;
+            }
+        } else if (re < 6) { // the row then is 3,4,5
+            if (ce < 3) {
+                return 3;
+            } else if (ce < 6) {
+                return 4;
+            } else {
+                return 5;
+            }
+        } else { // the row then is 6,7,8
+            if (ce < 3) {
+                return 6;
+            } else if (ce < 6) {
+                return 7;
+            } else {
+                return 8;
+            }
+        }
+    }
+
+    private int getColNumber(int re, int ce)
+    {
+        if (re < 0 | re > 8 | ce < 0 | ce > 8) { // invalid input
+            return -1;
+        } else if (re % 3 == 0) { // the col then is 0,1,2
+            if (ce % 3 == 0) {
+                return 0;
+            } else if (ce % 3 == 1) { 
+                return 1;
+            } else {
+                return 2;
+            }
+        } else if (re % 3 == 1) { // the col then is 3,4,5
+            if (ce % 3 == 0) {
+                return 3;
+            } else if (ce % 3 == 1) { 
+                return 4;
+            } else {
+                return 5;
+            }
+        } else { // the col then is 6,7,8
+            if (ce % 3 == 0) {
+                return 6;
+            } else if (ce % 3 == 1) { 
+                return 7;
+            } else {
+                return 8;
+            }
+
         }
     }
 
