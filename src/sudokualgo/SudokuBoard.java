@@ -376,7 +376,15 @@ public class SudokuBoard
     }
 
     public void findPosibilities()
+    {        
+        
+        findOnePosibilityCell();
+    
+    }
+
+    private void findOnePosibilityCell()
     {
+        
         ArrayList allValues = new ArrayList<SudokuValue>();
         allValues.add(SudokuValue.SV_1);
         allValues.add(SudokuValue.SV_2);
@@ -388,6 +396,7 @@ public class SudokuBoard
         allValues.add(SudokuValue.SV_8);
         allValues.add(SudokuValue.SV_9);
 
+        RECT_LOOP:
         for (SudokuRect rect : sudokoRects) {
             for (SudokuCell cell : rect.sudokoCell) {
                 if (cell.sureValue == null) {
@@ -418,13 +427,14 @@ public class SudokuBoard
                     } else if (temp.size() == 1 ){
                         cell.sureValue = temp.get(0);
                         System.out.println("Sure value found!");
+                        //run the findPosibility again
+                        findPosibilities();
+                        break RECT_LOOP;
                     } else{
                         for (SudokuValue v : temp) {
                             cell.addPosibility(v);
                         }
                     }
-                    
-
                 }
             }
         }
@@ -502,6 +512,5 @@ public class SudokuBoard
 
         }
     }
-
 
 }
