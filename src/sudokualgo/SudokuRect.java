@@ -11,11 +11,20 @@ package sudokualgo;
  */
 public class SudokuRect
 {
+
     public SudokuCell[] sudokoCells = new SudokuCell[9];
-    
-    public SudokuRect(){
+
+    public SudokuRect()
+    {
         for (int i = 0; i < 9; i++) {
             sudokoCells[i] = new SudokuCell();
+        }
+    }
+
+    void clear()
+    {
+        for (SudokuCell c : sudokoCells) {
+            c.clear();
         }
     }
 }

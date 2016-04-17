@@ -80,8 +80,14 @@ public class SudokuCell
         }
     }
 
-    ArrayList<SudokuValue> getPosibilitiesValue()
+    ArrayList<SudokuValue> getPosibilitiesValueCopy()
     {
         return SudokuAlgo.copyArrayList(possibleValues);
+    }
+
+    void clear()
+    {
+        sureValue = null;
+        possibleValues.clear();
     }
 }

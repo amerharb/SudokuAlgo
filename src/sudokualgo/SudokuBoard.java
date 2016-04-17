@@ -287,8 +287,18 @@ public class SudokuBoard
         return sc;
     }
 
+    public void clear()
+    {
+        for (SudokuRect r : sudokoRects) {
+            r.clear();
+        }
+
+    }
+
     void fillFromArray(int[] bord)
     {
+        clear();
+
         int i = 0;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
@@ -425,7 +435,6 @@ public class SudokuBoard
                         System.out.println("ERROR: this is a non-solveable sudoku");
                     } else if (temp.size() == 1) {
                         cell.sureValue = temp.get(0);
-                        System.out.println("Sure value found!");
                         //run the findPosibility again
                         findOnePosibilityCell();
                         break RECT_LOOP;
@@ -449,10 +458,10 @@ public class SudokuBoard
                     ArrayList<SudokuValue> temp;
 
                     //check other cell in same rect of this cell 
-                    temp = cell.getPosibilitiesValue();
+                    temp = cell.getPosibilitiesValueCopy();
                     for (SudokuCell c : rect.sudokoCells) {
                         if (c.sureValue == null && c != cell) {
-                            for (SudokuValue v : c.getPosibilitiesValue()) {
+                            for (SudokuValue v : c.getPosibilitiesValueCopy()) {
                                 temp.remove(v);
                             }
                         }
@@ -463,12 +472,12 @@ public class SudokuBoard
                         findUniquePosibilityCell();
                         break RECT_LOOP;
                     }
-                    
+
                     //check other cell in the same row 
-                    temp = cell.getPosibilitiesValue();
+                    temp = cell.getPosibilitiesValueCopy();
                     for (SudokuCell c : this.getRow(cell)) {
                         if (c.sureValue == null && c != cell) {
-                            for (SudokuValue v : c.getPosibilitiesValue()) {
+                            for (SudokuValue v : c.getPosibilitiesValueCopy()) {
                                 temp.remove(v);
                             }
                         }
@@ -481,10 +490,10 @@ public class SudokuBoard
                     }
 
                     //check other cell in the same col and remove then sure value
-                    temp = cell.getPosibilitiesValue();
+                    temp = cell.getPosibilitiesValueCopy();
                     for (SudokuCell c : this.getCol(cell)) {
                         if (c.sureValue != null) {
-                            for (SudokuValue v : c.getPosibilitiesValue()) {
+                            for (SudokuValue v : c.getPosibilitiesValueCopy()) {
                                 temp.remove(v);
                             }
                         }
