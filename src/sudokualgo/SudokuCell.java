@@ -18,7 +18,7 @@ public class SudokuCell
 
     private ArrayList<SudokuValue> possibleValues = new ArrayList<>();
     private int pCounter = 0;
-
+    
     public void addPosibility(SudokuValue v)
     {
         if (v != null) {
@@ -90,4 +90,35 @@ public class SudokuCell
         sureValue = null;
         possibleValues.clear();
     }
+
+    private int lastTry = -1;
+    public void clearTrial(){
+        lastTry = -1;
+    }
+    
+    public boolean tryPosibility()
+    {
+        lastTry++;
+        if (lastTry >= possibleValues.size()){
+            lastTry = -1;
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public SudokuValue trialValue(){
+        if (lastTry == -1){
+            return null;
+        }else{
+            return possibleValues.get(lastTry);
+        }
+    }
+
+    public void clearPosibilities()
+    {
+        possibleValues.clear();
+        lastTry = -1;
+    }
+
 }

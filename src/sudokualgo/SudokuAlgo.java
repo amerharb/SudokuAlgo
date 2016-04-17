@@ -69,18 +69,28 @@ public class SudokuAlgo
                     //fill from array to the object
                     sb.fillFromArray(bord);
 
+                } else if (command.startsWith("clear")) {
+                    sb.clear();
                 } else if (command.startsWith("print")) {
                     //print what has been filled
                     if (sb != null) {
+                        System.out.println("+---+---+---+");
                         for (int j = 0; j < 9; j++) {
                             SudokuCell[] row = sb.getRow(j);
                             //print row
+                            System.out.print("|");
+                            for (int i = 0; i < 9; i++) {
+                                System.out.print(row[i].getSureValue());
+                                if (i % 3 == 2) {
+                                    System.out.print("|");
+                                }
+                            }
                             System.out.println("");
-                            System.out.print(" | ");
-                            for (SudokuCell c : row) {
-                                System.out.print(c.getSureValue() + " | ");
+                            if (j % 3 == 2) {
+                                System.out.println("+---+---+---+");
                             }
                         }
+                        System.out.println("");
                     }
                 } else if (command.startsWith("solve")) {
                     sb.findPosibilities();

@@ -15,7 +15,8 @@ public class SudokuBoard
 {
 
     public SudokuRect[] sudokoRects = new SudokuRect[9];
-
+    private SudokuCell[] unSureCellArray;
+    
     public SudokuBoard()
     {
         for (int i = 0; i < 9; i++) {
@@ -389,6 +390,7 @@ public class SudokuBoard
 
         findOnePosibilityCell();
         findUniquePosibilityCell();
+        buildUnSureCellsArray();
     }
 
     private void findOnePosibilityCell()
@@ -410,6 +412,10 @@ public class SudokuBoard
             for (SudokuCell cell : rect.sudokoCells) {
                 if (cell.sureValue == null) {
                     ArrayList<SudokuValue> temp = SudokuAlgo.copyArrayList(allValues);
+
+                    //clear old possiblities to re calculate
+                    //cell.clearPosibilities();
+
                     //check other cell in same rect of this cell and remove then sure value
                     for (SudokuCell c : rect.sudokoCells) {
                         if (c.sureValue != null) {
@@ -435,6 +441,8 @@ public class SudokuBoard
                         System.out.println("ERROR: this is a non-solveable sudoku");
                     } else if (temp.size() == 1) {
                         cell.sureValue = temp.get(0);
+                        //debug
+                        print();
                         //run the findPosibility again
                         findOnePosibilityCell();
                         break RECT_LOOP;
@@ -446,6 +454,27 @@ public class SudokuBoard
                 }
             }
         }
+    }
+
+    private void print()
+    {
+        System.out.println("+---+---+---+");
+        for (int j = 0; j < 9; j++) {
+            SudokuCell[] row = this.getRow(j);
+            //print row
+            System.out.print("|");
+            for (int i = 0; i < 9; i++) {
+                System.out.print(row[i].getSureValue());
+                if (i % 3 == 2) {
+                    System.out.print("|");
+                }
+            }
+            System.out.println("");
+            if (j % 3 == 2) {
+                System.out.println("+---+---+---+");
+            }
+        }
+        System.out.println("");
     }
 
     private void findUniquePosibilityCell()
@@ -464,10 +493,16 @@ public class SudokuBoard
                             for (SudokuValue v : c.getPosibilitiesValueCopy()) {
                                 temp.remove(v);
                             }
+                            if (temp.size() == 0) {
+                                break;
+                            }
                         }
                     }
                     if (temp.size() == 1) { //unique posibility in rect
                         cell.sureValue = temp.get(0);
+                        //debug
+                        print();
+
                         findOnePosibilityCell();
                         findUniquePosibilityCell();
                         break RECT_LOOP;
@@ -480,10 +515,15 @@ public class SudokuBoard
                             for (SudokuValue v : c.getPosibilitiesValueCopy()) {
                                 temp.remove(v);
                             }
+                            if (temp.size() == 0) {
+                                break;
+                            }
                         }
                     }
-                    if (temp.size() == 1) { //unique posibility in rect
+                    if (temp.size() == 1) { //unique posibility in row
                         cell.sureValue = temp.get(0);
+                        //debug
+                        print();
                         findOnePosibilityCell();
                         findUniquePosibilityCell();
                         break RECT_LOOP;
@@ -492,14 +532,17 @@ public class SudokuBoard
                     //check other cell in the same col and remove then sure value
                     temp = cell.getPosibilitiesValueCopy();
                     for (SudokuCell c : this.getCol(cell)) {
-                        if (c.sureValue != null) {
+                        if (c.sureValue == null) {
                             for (SudokuValue v : c.getPosibilitiesValueCopy()) {
                                 temp.remove(v);
                             }
                         }
                     }
-                    if (temp.size() == 1) { //unique posibility in rect
+                    if (temp.size() == 1) { //unique posibility in col
                         cell.sureValue = temp.get(0);
+                        //debug
+                        print();
+
                         findOnePosibilityCell();
                         findUniquePosibilityCell();
                         break RECT_LOOP;
@@ -573,4 +616,34 @@ public class SudokuBoard
         }
     }
 
+    private void buildUnSureCellsArray()
+    {
+        ArrayList<SudokuCell> list = new ArrayList<SudokuCell>();
+        
+        for (SudokuRect r : sudokoRects) {
+            for (SudokuCell c : r.sudokoCells) {
+                if (c.sureValue == null){
+                    list.add(c);
+                }
+            }
+        }
+        
+        //create array
+        unSureCellArray = new SudokuCell[list.size()];
+        int i = 0;
+        for (SudokuCell c : list) {
+            unSureCellArray[i] = c;
+            i++;
+        }
+    }
+
+    private void tryPosibilities(){
+        for (int i = 0; i < unSureCellArray.length; i++) {
+            SudokuCell c = unSureCellArray[i]; //just to make it easy to deal with
+            //here we will asume that each cell has 2 posiblity or more it make sense as long as this proc run after findOnepos... proc
+            c.trialValue();
+            
+            
+        }
+    }
 }
