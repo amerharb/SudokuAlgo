@@ -16,7 +16,7 @@ public class SudokuBoard
 
     public SudokuRect[] sudokoRects = new SudokuRect[9];
     private SudokuCell[] unSureCellArray;
-    
+
     public SudokuBoard()
     {
         for (int i = 0; i < 9; i++) {
@@ -390,7 +390,6 @@ public class SudokuBoard
 
         findOnePosibilityCell();
         findUniquePosibilityCell();
-        buildUnSureCellsArray();
     }
 
     private void findOnePosibilityCell()
@@ -415,7 +414,6 @@ public class SudokuBoard
 
                     //clear old possiblities to re calculate
                     //cell.clearPosibilities();
-
                     //check other cell in same rect of this cell and remove then sure value
                     for (SudokuCell c : rect.sudokoCells) {
                         if (c.sureValue != null) {
@@ -616,18 +614,80 @@ public class SudokuBoard
         }
     }
 
+    public void solve()
+    {
+        fillPosibilities(); //only fill posibilities wihout assigen any new sureValue
+        buildUnSureCellsArray();
+        if (tryPosibilities()){
+            setTrialToSure();
+        }
+    }
+
+    private void fillPosibilities()
+    {
+        ArrayList allValues = new ArrayList<SudokuValue>();
+        allValues.add(SudokuValue.SV_1);
+        allValues.add(SudokuValue.SV_2);
+        allValues.add(SudokuValue.SV_3);
+        allValues.add(SudokuValue.SV_4);
+        allValues.add(SudokuValue.SV_5);
+        allValues.add(SudokuValue.SV_6);
+        allValues.add(SudokuValue.SV_7);
+        allValues.add(SudokuValue.SV_8);
+        allValues.add(SudokuValue.SV_9);
+
+        for (SudokuRect rect : sudokoRects) {
+            for (SudokuCell cell : rect.sudokoCells) {
+                if (cell.sureValue == null) {
+                    ArrayList<SudokuValue> temp = SudokuAlgo.copyArrayList(allValues);
+                    cell.clearPosibilities();
+
+                    //check other cell in same rect of this cell and remove then sure value
+                    for (SudokuCell c : rect.sudokoCells) {
+                        if (c.sureValue != null) {
+                            temp.remove(c.sureValue);
+                        }
+                    }
+
+                    //check other cell in the same row and remove then sure value
+                    for (SudokuCell c : this.getRow(cell)) {
+                        if (c.sureValue != null) {
+                            temp.remove(c.sureValue);
+                        }
+                    }
+
+                    //check other cell in the same col and remove then sure value
+                    for (SudokuCell c : this.getCol(cell)) {
+                        if (c.sureValue != null) {
+                            temp.remove(c.sureValue);
+                        }
+                    }
+
+                    if (temp.size() < 1) {
+                        System.out.println("ERROR: this is a non-solveable sudoku");
+                    } else {
+                        for (SudokuValue v : temp) {
+                            cell.addPosibility(v);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
     private void buildUnSureCellsArray()
     {
         ArrayList<SudokuCell> list = new ArrayList<SudokuCell>();
-        
+
         for (SudokuRect r : sudokoRects) {
             for (SudokuCell c : r.sudokoCells) {
-                if (c.sureValue == null){
+                if (c.sureValue == null) {
                     list.add(c);
                 }
             }
         }
-        
+
         //create array
         unSureCellArray = new SudokuCell[list.size()];
         int i = 0;
@@ -635,15 +695,79 @@ public class SudokuBoard
             unSureCellArray[i] = c;
             i++;
         }
+        list = null;
     }
 
-    private void tryPosibilities(){
-        for (int i = 0; i < unSureCellArray.length; i++) {
-            SudokuCell c = unSureCellArray[i]; //just to make it easy to deal with
-            //here we will asume that each cell has 2 posiblity or more it make sense as long as this proc run after findOnepos... proc
-            c.trialValue();
-            
-            
+    private boolean tryPosibilities()
+    {
+        int i = 0;
+        while (i < unSureCellArray.length) {
+            SudokuCell c = unSureCellArray[i];
+            if (c.tryPosibility()) {
+                if (!cellsConflict()) {
+                    i++; //move to next cell 
+                }
+                continue;
+            } else { //try the cell before
+                i--;
+                //check if first
+                if (i < 0) {
+                    return false;
+                } else {
+                    continue;
+                }
+            }
+        }
+        return true;
+
+    }
+
+    private boolean cellsConflict()
+    {
+        for (SudokuRect r : sudokoRects) {
+            for (int i = 0; i < 9; i++) {
+                for (int j = i + 1; j < 9; j++) {
+                    if (r.sudokoCells[i].getValue() != null && r.sudokoCells[j].getValue() != null) {
+                        if (r.sudokoCells[i].getValue() == r.sudokoCells[j].getValue()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int x = 0; x < 9; x++) {
+            SudokuCell[] row = getRow(x);
+            for (int i = 0; i < 9; i++) {
+                for (int j = i + 1; j < 9; j++) {
+                    if (row[i].getValue() != null && row[j].getValue() != null) {
+                        if (row[i].getValue() == row[j].getValue()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int x = 0; x < 9; x++) {
+            SudokuCell[] col = getCol(x);
+            for (int i = 0; i < 9; i++) {
+                for (int j = i + 1; j < 9; j++) {
+                    if (col[i].getValue() != null && col[j].getValue() != null) {
+                        if (col[i].getValue() == col[j].getValue()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private void setTrialToSure(){
+        for (SudokuCell c : unSureCellArray) {
+            c.sureValue = c.trialValue();
         }
     }
 }

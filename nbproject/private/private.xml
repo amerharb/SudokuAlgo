@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudoduAlgo/src/sudodualgo/SudokuAlgo.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/src/sudokualgo/SudokuBoard.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/src/sudokualgo/SudokuRect.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/src/sudokualgo/SudokuValue.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/src/sudokualgo/SudokuAlgo.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/src/sudokualgo/SudokuCell.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/src/sudokualgo/CommandReader.java</file>
+            <file>file:/C:/Users/Amer/Google%20Drive/Java/SudokuAlgo/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

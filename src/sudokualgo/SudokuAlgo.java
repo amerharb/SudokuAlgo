@@ -93,7 +93,8 @@ public class SudokuAlgo
                         System.out.println("");
                     }
                 } else if (command.startsWith("solve")) {
-                    sb.findPosibilities();
+                    //sb.findPosibilities();
+                    sb.solve();
                 }
             }
         }

@@ -115,6 +115,14 @@ public class SudokuCell
         }
     }
 
+    public SudokuValue getValue(){
+        if(sureValue == null){
+            return trialValue();
+        }else{
+            return sureValue;
+        }
+    }
+    
     public void clearPosibilities()
     {
         possibleValues.clear();
